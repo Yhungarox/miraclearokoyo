@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miracle Arokoyo - Product Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            left: -20px;
+            top: 5px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+        .service-card:hover .service-icon {
+            transform: rotateY(180deg);
+        }
+        .service-icon {
+            transition: transform 0.5s ease;
+        }
+
+        /* Dark mode transition animation */
+        html {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Dark mode styles */
+        .dark {
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+        .dark .bg-white {
+            background-color: #1f2937;
+        }
+        .dark .bg-gray-50 {
+            background-color: #111827;
+        }
+        .dark .text-gray-800 {
+            color: #f3f4f6;
+        }
+        .dark .text-gray-600 {
+            color: #d1d5db;
+        }
+        .dark #contact .bg-white {
+            color: #111827;
+        }
+        .dark #contact .bg-white h3,
+        .dark #contact .bg-white h4,
+        .dark #contact .bg-white p {
+            color: #f3f4f6;
+        }
+        .dark #contact .bg-white input::placeholder,
+        .dark #contact .bg-white textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .dark .border-gray-300 {
+            border-color: #374151;
+        }
+        .dark .bg-gray-900 {
+            background-color: #030712;
+        }
+        
+        /* Tooltip styles */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 10;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">MA</div>
+                <span class="text-xl font-bold">Miracle Arokoyo</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button id="dark-mode-toggle" class="flex items-center text-gray-600 dark:text-gray-300 px-3 py-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <i id="mode-icon" class="fas fa-moon text-lg"></i>
+                    <span id="mode-text" class="ml-2 font-medium">Dark Mode</span>
+                </button>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-600">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-6 shadow-lg">
+            <a href="#about" class="block py-2 nav-link">About</a>
+            <a href="#services" class="block py-2 nav-link">Services</a>
+            <a href="#portfolio" class="block py-2 nav-link">Portfolio</a>
+            <a href="#contact" class="block py-2 nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Product Designer</h1>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Hi, I'm <span class="gradient-text">Miracle Arokoyo</span></h2>
+                <p class="text-lg text-gray-600 mb-8">From Nigeria, creating intuitive and visually engaging digital experiences.</p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all">Contact Me</a>
+                    <a href="#portfolio" class="px-6 py-3 border border-gray-300 rounded-full font-medium hover:bg-gray-100 transition-all">View Work</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                        <img src="https://myportfolio-miracle-arokoyo.netlify.app/images/user2.jpg" alt="Miracle Arokoyo" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">5+ Years</p>
+                                <p class="text-sm text-gray-600">Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">About Me</h2>
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        I am a passionate product designer dedicated to creating intuitive and visually engaging digital experiences. 
+                        I specialize in turning complex ideas into seamless, user-centered designs that not only look great but also 
+                        feel effortless to use. With a focus on innovation and detail, I aim to craft solutions that leave a lasting 
+                        impact and elevate user satisfaction.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="font-bold mb-2">UI/UX</h3>
+                            <p class="text-gray-600 text-sm">Designer Web/App Interfaces</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="font-bold mb-2">Web Development</h3>
+                            <p class="text-gray-600 text-sm">Web app Development</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="font-bold mb-2">App Development</h3>
+                            <p class="text-gray-600 text-sm">Building Android/iOS apps</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="mb-12">
+                        <h3 class="text-xl font-bold mb-6 relative pl-8 before:absolute before:left-0 before:top-3 before:w-6 before:h-0.5 before:bg-gradient-to-r before:from-blue-500 before:to-purple-500">Experience</h3>
+                        <div class="relative pl-8 border-l-2 border-gray-200 space-y-8">
+                            <div class="timeline-item relative">
+                                <h4 class="font-bold">UI/UX Designer at BettaRest</h4>
+                                <p class="text-sm text-gray-500 mb-2">Nov 2024 - Current</p>
+                            </div>
+                            <div class="timeline-item relative">
+                                <h4 class="font-bold">Product Design Internship at CodSoft</h4>
+                                <p class="text-sm text-gray-500 mb-2">Feb 2024 - Mar 2024</p>
+                            </div>
+                            <div class="timeline-item relative">
+                                <h4 class="font-bold">Google UX Design Professional Course and Freelance</h4>
+                                <p class="text-sm text-gray-500 mb-2">Jan 2023 - Jan 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-6 relative pl-8 before:absolute before:left-0 before:top-3 before:w-6 before:h-0.5 before:bg-gradient-to-r before:from-blue-500 before:to-purple-500">Education</h3>
+                        <div class="relative pl-8 border-l-2 border-gray-200 space-y-8">
+                            <div class="timeline-item relative">
+                                <h4 class="font-bold">Maths and Computer (Covenant University)</h4>
+                                <p class="text-sm text-gray-500 mb-2">Jan 2020 - Jul 2024</p>
+                            </div>
+                            <div class="timeline-item relative">
+                                <h4 class="font-bold">High School Certificate (Claret Secondary School)</h4>
+                                <p class="text-sm text-gray-500 mb-2">Sep 2016 - Nov 2019</p>
+                            </div>
+                            <div class="timeline-item relative">
+                                <h4 class="font-bold">Junior School Certificate (Deeper Life High School)</h4>
+                                <p class="text-sm text-gray-500 mb-2">Sep 2014 - Sep 2016</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-4 text-center">My Services</h2>
+            <p class="text-lg text-gray-600 mb-12 text-center max-w-2xl mx-auto">I offer professional design services to help your business stand out in the digital world.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                    <div class="service-icon w-16 h-16 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center text-2xl mb-6 mx-auto">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Web Design</h3>
+                    <p class="text-gray-600 mb-6 text-center">
+                        I offer professional services in developing high quality and well designed web sites that are designed to meet your business objectives.
+                    </p>
+                    <div class="text-center">
+                        <a href="https://www.behance.net/miraclearokoyo" class="text-blue-500 font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                    <div class="service-icon w-16 h-16 rounded-full bg-purple-100 text-purple-500 flex items-center justify-center text-2xl mb-6 mx-auto">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">UI/UX Design</h3>
+                    <p class="text-gray-600 mb-6 text-center">
+                        I develop elegant and user-friendly interfaces that are grounded on the principles of user experience (UX).
+                    </p>
+                    <div class="text-center">
+                        <a href="https://www.behance.net/miraclearokoyo" class="text-purple-500 font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                    <div class="service-icon w-16 h-16 rounded-full bg-indigo-100 text-indigo-500 flex items-center justify-center text-2xl mb-6 mx-auto">
+                        <i class="fas fa-mobile"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">App Design</h3>
+                    <p class="text-gray-600 mb-6 text-center">
+                        I develop beautiful and easy to use applications for mobile and web that are built to be both functional and creative.
+                    </p>
+                    <div class="text-center">
+                        <a href="https://www.behance.net/miraclearokoyo" class="text-indigo-500 font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-4 text-center">My Work</h2>
+            <p class="text-lg text-gray-600 mb-12 text-center max-w-2xl mx-auto">Explore some of my recent design projects and case studies.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://myportfolio-miracle-arokoyo.netlify.app/images/work-1.png" alt="UBA App Redesign" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">UBA App Redesign</h3>
+                        <p class="text-gray-600 mb-4">
+                            I redesigned the UBA mobile app to provide a better user experience with a new interface, clean navigation, and improved functionality.
+                        </p>
+                        <a href="https://www.behance.net/gallery/180642667/UBA-Mobile-App-Redesign" class="text-blue-500 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://myportfolio-miracle-arokoyo.netlify.app/images/work-2.png" alt="Social Media App" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Social Media App</h3>
+                        <p class="text-gray-600 mb-4">
+                            Created a simple and effective social application that aims at creating bonds between people with well-designed features.
+                        </p>
+                        <a href="https://www.behance.net/gallery/194107795/Mobile-Sign-inSign-up-UI-design" class="text-blue-500 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://myportfolio-miracle-arokoyo.netlify.app/images/work-3.png" alt="Newsletter Web App" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Newsletter Web App</h3>
+                        <p class="text-gray-600 mb-4">
+                            Created and developed a web application for the management and sending of newsletters with real time analytics.
+                        </p>
+                        <a href="https://www.behance.net/gallery/194111017/Newsletter-Web-UI-design" class="text-blue-500 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://linktr.ee/miraclearokoyo" class="px-6 py-3 border border-gray-300 rounded-full font-medium hover:bg-gray-100 transition-all inline-flex items-center">
+                    See More Projects <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-gradient-to-r from-blue-50 to-purple-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Contact Me</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold mb-6">Get in Touch</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Email</h4>
+                                    <p class="text-gray-600">miraclearokoyo2018@gmail.com</p>
+                                    <button onclick="copyEmail()" class="text-blue-500 text-sm mt-1 inline-flex items-center">
+                                        Copy Email <i class="fas fa-copy ml-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-500 flex items-center justify-center">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Phone</h4>
+                                    <p class="text-gray-600">+2349069943919</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 rounded-full bg-indigo-100 text-indigo-500 flex items-center justify-center">
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Social Media</h4>
+                                    <div class="flex space-x-4 mt-2">
+                                        <a href="https://www.linkedin.com/in/miracle-arokoyo/" class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition-colors">
+                                            <i class="fab fa-linkedin-in"></i>
+                                        </a>
+                                        <a href="https://www.instagram.com/yhungarox__/" class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                        <a href="https://www.behance.net/miraclearokoyo" class="w-10 h-10 rounded-full bg-blue-800 text-white flex items-center justify-center hover:bg-blue-900 transition-colors">
+                                            <i class="fab fa-behance"></i>
+                                        </a>
+                                        <a href="https://github.com/Yhungarox" class="w-10 h-10 rounded-full bg-gray-800 text-white flex items-center justify-center hover:bg-gray-900 transition-colors">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                        <a href="https://wa.me/2349069943919" class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-colors">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <a href="https://myportfolio-miracle-arokoyo.netlify.app/images/Arokoyo,%20Miracle%20CV.pdf" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all inline-flex items-center">
+                                <i class="fas fa-download mr-2"></i> Download CV
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold mb-6">Send a Message</h3>
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" required>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all">
+                                Submit Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-gray-900 text-white">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>Copyright © 2025 Crafted by Miracle Arokoyo</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://www.linkedin.com/in/miracle-arokoyo/" class="hover:text-blue-400 transition-colors">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.instagram.com/yhungarox__/" class="hover:text-pink-400 transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.behance.net/miraclearokoyo" class="hover:text-blue-300 transition-colors">
+                        <i class="fab fa-behance"></i>
+                    </a>
+                    <a href="https://github.com/Yhungarox" class="hover:text-gray-300 transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Copy email function
+        function copyEmail() {
+            const email = 'miraclearokoyo2018@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                alert('Email copied to clipboard!');
+            });
+        }
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const modeIcon = document.getElementById('mode-icon');
+        const modeText = document.getElementById('mode-text');
+        
+        // Check for saved user preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark');
+            modeIcon.classList.replace('fa-moon', 'fa-sun');
+            modeText.textContent = 'Light Mode';
+        }
+
+        darkModeToggle.addEventListener('click', function() {
+            // Add transition class for smooth animation
+            document.documentElement.classList.add('transition-colors');
+            
+            // Toggle dark mode
+            document.documentElement.classList.toggle('dark');
+            
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('darkMode', 'enabled');
+                modeIcon.classList.replace('fa-moon', 'fa-sun');
+                modeText.textContent = 'Light Mode';
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                modeIcon.classList.replace('fa-sun', 'fa-moon');
+                modeText.textContent = 'Dark Mode';
+            }
+
+            // Remove transition class after animation completes
+            setTimeout(() => {
+                document.documentElement.classList.remove('transition-colors');
+            }, 500);
+        });
+
+        // Add shadow to navbar on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
